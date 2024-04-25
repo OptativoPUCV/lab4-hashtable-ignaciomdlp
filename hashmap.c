@@ -40,8 +40,32 @@ int is_equal(void* key1, void* key2){
 
 
 void insertMap(HashMap * map, char * key, void * value) {
+  if (map == NULL){
+    exit(EXIT_FAILURE);
+  }
 
+  long index = hash(key, map->capacity) % map->capacity;
 
+  while (map->buckets[index] != NULL && map->buckets[index]->key != NULL && strcmp(map->buckets[index]->key, key) != 0){
+    index = (index + 1) % map->capacity;
+  }
+
+  if (map->buckets[index] == NULL || map->buckets[index]->key == NULL){
+    Pair *newPair = malloc(sizeof(Pair));
+    if (newPair == NULL){
+      exit(EXIT_FAILURE);
+    }
+
+    newPair->key = strdup(key);
+    if (newPair->key == NULL){
+      exit(EXIT_FAILURE);
+    }
+
+    newPair->value = value;
+    map->buckets[index] = newPair;
+    map->size++;
+    map->current = index;
+  }
 }
 
 void enlarge(HashMap * map) {
@@ -52,27 +76,117 @@ void enlarge(HashMap * map) {
 
 
 HashMap * createMap(long capacity) {
-
+  if (capacity == 0){
     return NULL;
+  }
+
+  HashMap *map = malloc(sizeof(HashMap));
+  if (map == NULL){
+    exit(EXIT_FAILURE);
+  }
+
+  map->capacity = capacity;
+  map->size = 0;
+  map->buckets = malloc(sizeof(Pair *) * capacity);
+  if (map->buckets == NULL){
+    exit(EXIT_FAILURE);
+  }
+
+  for (int i = 0; i < capacity; i++){
+    map->buckets[i] = NULL;
+  }
+
+  map->current = -1;
+
+  return map;
 }
 
 void eraseMap(HashMap * map,  char * key) {    
+  if (map == NULL){
+    exit(EXIT_FAILURE);
+  }
 
+  Pair *pair = searchMap(map, key);
 
+  if (pair != NULL){
+    pair->key = NULL;
+    map->size--;
+  }
 }
 
-Pair * searchMap(HashMap * map,  char * key) {   
+Pair * searchMap(HashMap * map,  char * key) {
+  if (map == NULL){
+    exit(EXIT_FAILURE);
+  }
 
+  long index = hash(key, map->capacity) % map->capacity;
 
-    return NULL;
+  while(map->buckets[index] != NULL && (map->buckets[index]->key == NULL || strcmp(map->buckets[index]->key, key)) != 0){
+    index = (index + 1) % map->capacity;
+  }
+
+  if (map->buckets[index] != NULL && (map->buckets[index]->key == NULL || strcmp(map->buckets[index]->key, key) == 0)){
+    map->current = index;
+    return map->buckets[index];
+  }
+
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
+  if (map == NULL){
+    exit(EXIT_FAILURE);
+  }
 
-    return NULL;
+  map->current = -1;
+
+  return nextMap(map);
 }
+/*
+Pair * nextMap(HashMap * map) {
+  if (map == NULL){
+    exit(EXIT_FAILURE);
+  }
+
+  if (map->current == -1){
+    for(int i = 0; i < map->capacity; i++){
+      if (map->buckets[i] != NULL && map->buckets[i]->key != NULL){
+        map->current = i;
+        return map->buckets[i];
+      }
+    }
+    return NULL;
+  }
+  else {
+    int nextIndex = (map->current + 1) % map->capacity;
+
+    while (nextIndex != map->current || (map->buckets[nextIndex] == NULL && map->buckets[nextIndex]->key == NULL)){
+      nextIndex = (nextIndex + 1) % map->capacity;
+    }
+
+    if(nextIndex != map->current){
+      map->current = nextIndex;
+      return map->buckets[nextIndex];
+    }
+    else{
+      map->current = -1;
+      return NULL;
+    }
+  }
+}
+*/
 
 Pair * nextMap(HashMap * map) {
-
-    return NULL;
+  if (map == NULL || map->current == -1) return NULL;
+  long pos = ((map->current) + 1) % map->capacity; // controlar que no se salga del mapa
+  while(pos < map->capacity && pos != 0)
+    {
+      if(map->buckets[pos] != NULL && map->buckets[pos]->key != NULL)
+      {
+        map->current = pos;
+        return map->buckets[pos];
+      }
+      pos++;;
+    }
+  return NULL;
 }
