@@ -138,7 +138,7 @@ Pair * firstMap(HashMap * map) {
     exit(EXIT_FAILURE);
   }
 
-  map->current = -1;
+  map->current = 0;
 
   return nextMap(map);
 }
