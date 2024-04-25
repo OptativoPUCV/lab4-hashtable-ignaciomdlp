@@ -73,3 +73,14 @@ Thu 25 Apr 2024 09:16:05 PM UTC:
  tests:  11|2
 total_score: 50/70
 db2d7cd
+Thu 25 Apr 2024 09:18:27 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘firstMap’:
+hashmap.c:141:16: error: assignment to ‘long int’ from ‘void *’ makes integer from pointer without a cast [-Werror=int-conversion]
+  141 |   map->current = NULL;
+      |                ^
+cc1: all warnings being treated as errors
+Compilation failed
+f2ff092
