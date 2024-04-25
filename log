@@ -10,3 +10,12 @@ Thu 25 Apr 2024 04:01:14 AM UTC:
  tests:  13|2
 total_score: 50/70
 52889b9
+Thu 25 Apr 2024 04:02:29 AM UTC: 
+ hashmap.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/ccuVAINk.o: in function `first_test':
+test.c:(.text+0x1101): undefined reference to `firstMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: test.c:(.text+0x1151): undefined reference to `firstMap'
+collect2: error: ld returned 1 exit status
+Compilation failed
+70d76e4
