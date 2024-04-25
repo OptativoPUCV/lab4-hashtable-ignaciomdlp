@@ -142,7 +142,7 @@ Pair * firstMap(HashMap * map) {
 
   return nextMap(map);
 }
-
+/*
 Pair * nextMap(HashMap * map) {
   if (map == NULL){
     exit(EXIT_FAILURE);
@@ -168,8 +168,8 @@ Pair * nextMap(HashMap * map) {
     
   }
 }
+*/
 
-/*
 Pair * nextMap(HashMap * map) {
   if (map == NULL ) return NULL;
   long pos = ((map->current) + 1) % map->capacity; // controlar que no se salga del mapa
@@ -184,4 +184,3 @@ Pair * nextMap(HashMap * map) {
     }
   return NULL;
 }
-*/
