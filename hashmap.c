@@ -177,7 +177,7 @@ Pair * nextMap(HashMap * map) {
 */
 
 Pair * nextMap(HashMap * map) {
-  if (map == NULL || map->current == -1) return NULL;
+  if (map == NULL ) return NULL;
   long pos = ((map->current) + 1) % map->capacity; // controlar que no se salga del mapa
   while(pos < map->capacity && pos != 0)
     {
