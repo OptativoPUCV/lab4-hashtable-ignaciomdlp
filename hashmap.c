@@ -132,7 +132,7 @@ Pair * searchMap(HashMap * map,  char * key) {
 
   return NULL;
 }
-/*
+
 Pair * firstMap(HashMap * map) {
   if (map == NULL){
     exit(EXIT_FAILURE);
@@ -174,7 +174,7 @@ Pair * nextMap(HashMap * map) {
     }
   }
 }
-*/
+
 
 Pair * nextMap(HashMap * map) {
   if (map == NULL || map->current == -1) return NULL;

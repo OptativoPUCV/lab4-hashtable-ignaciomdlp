@@ -19,3 +19,15 @@ test.c:(.text+0x1101): undefined reference to `firstMap'
 collect2: error: ld returned 1 exit status
 Compilation failed
 70d76e4
+Thu 25 Apr 2024 04:02:58 AM UTC: 
+ hashmap.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+In file included from test.c:4:
+hashmap.c:179:8: error: redefinition of ‘nextMap’
+  179 | Pair * nextMap(HashMap * map) {
+      |        ^~~~~~~
+hashmap.c:146:8: note: previous definition of ‘nextMap’ with type ‘Pair *(HashMap *)’ {aka ‘Pair *(struct HashMap *)’}
+  146 | Pair * nextMap(HashMap * map) {
+      |        ^~~~~~~
+Compilation failed
+c387972
