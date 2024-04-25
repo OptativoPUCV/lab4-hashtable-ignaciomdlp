@@ -137,39 +137,27 @@ Pair * firstMap(HashMap * map) {
   if (map == NULL){
     exit(EXIT_FAILURE);
   }
-
-  map->current = 0;
+  
+  map->current = -1;
 
   return nextMap(map);
 }
-/*
+
 Pair * nextMap(HashMap * map) {
   if (map == NULL){
     exit(EXIT_FAILURE);
   }
 
-  if (map->current == -1){
-    for(int i = 0; i < map->capacity; i++){
-      if (map->buckets[i] != NULL && map->buckets[i]->key != NULL){
-        map->current = i;
-        return map->buckets[i];
-      }
+  for(int i = map->current + 1; i < map->capacity; i++){
+    if (map->buckets[i] != NULL && map->buckets[i]->key != NULL){
+      map->current = i;
+      return map->buckets[i];
     }
-    return NULL;
   }
-  else {
-    int nextIndex = (map->current + 1) % map->capacity;
-
-    while (nextIndex != map->current || (map->buckets[nextIndex] == NULL && map->buckets[nextIndex]->key == NULL)){
-      nextIndex = (nextIndex + 1) % map->capacity;
-    }
-    map->current = -1;
-    return NULL;
-    
-  }
+  return NULL;
 }
-*/
 
+/*
 Pair * nextMap(HashMap * map) {
   if (map == NULL ) return NULL;
   long pos = ((map->current) + 1) % map->capacity; // controlar que no se salga del mapa
@@ -184,3 +172,4 @@ Pair * nextMap(HashMap * map) {
     }
   return NULL;
 }
+*/
