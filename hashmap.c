@@ -75,7 +75,7 @@ void enlarge(HashMap * map) {
   map->buckets = (Pair **)calloc(map->capacity, sizeof(Pair*));
   map->size = 0;
   
-  Pair ** valid_pointers = (Pair **)calloc((map->capacity / 2) * sizeof(Pair*));
+  Pair ** valid_pointers = (Pair **)calloc((map->capacity / 2), sizeof(Pair*));
   int valid_count = 0;
   
   for (int i = 0; i < map->capacity / 2; i++){
