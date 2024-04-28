@@ -74,10 +74,20 @@ void enlarge(HashMap * map) {
   map->capacity *= 2;
   map->buckets = (Pair **)calloc(map->capacity, sizeof(Pair*));
   map->size = 0;
+  
+  Pair ** valid_pointers = (Pair **)calloc((map->capacity / 2) * sizeof(Pair*));
+  int valid_count = 0;
+  
   for (int i = 0; i < map->capacity / 2; i++){
     if (old_array[i] != NULL){
+
+      int new_bucket_index = hash(old_array[i]->key, map->capacity);
+      valid_pointers[valid_count++] = old_array[i];
+
+      if (map->buckets[new_bucket_index] != NULL && map->buckets[new_bucket_index]->key != NULL && strcmp(map->buckets[new_bucket_index]->key, old_array[i]->key) == 0){
+        continue;
+      }
       insertMap(map, old_array[i]->key, old_array[i]->value);
-      free(old_array);
     }
   }
 }

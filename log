@@ -118,3 +118,17 @@ Sun 28 Apr 2024 01:38:10 AM UTC:
  1 file changed, 1 insertion(+), 1 deletion(-)
  tests:  0|0
 deebe60
+Sun 28 Apr 2024 01:54:11 AM UTC: 
+ hashmap.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘enlarge’:
+hashmap.c:78:37: error: too few arguments to function ‘calloc’
+   78 |   Pair ** valid_pointers = (Pair **)calloc((map->capacity / 2) * sizeof(Pair*));
+      |                                     ^~~~~~
+In file included from test.c:2:
+/nix/store/4pqv2mwdn88h7xvsm7a5zplrd8sxzvw0-glibc-2.35-163-dev/include/stdlib.h:543:14: note: declared here
+  543 | extern void *calloc (size_t __nmemb, size_t __size)
+      |              ^~~~~~
+Compilation failed
+9016051
