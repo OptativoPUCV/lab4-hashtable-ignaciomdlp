@@ -113,3 +113,8 @@ hashmap.c:75:16: error: assignment to ‘Pair **’ from incompatible pointer ty
 cc1: all warnings being treated as errors
 Compilation failed
 6a45620
+Sun 28 Apr 2024 01:38:10 AM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|0
+deebe60
